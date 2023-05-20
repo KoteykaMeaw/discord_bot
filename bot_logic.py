@@ -1,5 +1,6 @@
 import random
 
+
 def gen_pass(pass_length):
     elements = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
     password = ""
@@ -23,3 +24,14 @@ def flip_coin():
         return "ОРЕЛ"
     else:
         return "РЕШКА"
+
+def gameee():
+    gamee = random.randint(0, 2)
+    if gamee == 0:
+        return "Роблокс"
+    if gamee == 1:
+        return "Майнкрафт"
+    else:
+        return "Что нибудь другое"
+
+
