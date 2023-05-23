@@ -5,9 +5,8 @@ from bot_logic import flip_coin
 from bot_logic import gameee
 from settings import settings
 # Переменная intents - хранит привилегии бота
-intents = discord.Intents.default()
-# Включаем привелегию на чтение сообщений
-intents.message_content = True
+intents=discord.Intents.all()
+intents.members = True
 # Создаем бота в переменной client и передаем все привелегии
 client = discord.Client(intents=intents)
 
@@ -48,11 +47,9 @@ async def on_message(message):
 
 
 @client.event
-async def on_member_join(self, member):
-    guild = member.guild
-    if guild.system_channel is not None:
-        to_send = f'Welcome {member.mention} to {guild.name}!'
-        await guild.system_channel.send(to_send)
+async def on_member_join(member):
+    print(f'{member} has joined a server.')
+    await member.send(f"Hello {member}!")
 
 
 client.run(settings["TOKEN"])
