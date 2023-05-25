@@ -3,20 +3,21 @@ from bot_logic import gen_pass
 from bot_logic import gen_emodji
 from bot_logic import flip_coin
 from bot_logic import gameee
-from settings import settings
-# Переменная intents - хранит привилегии бота
+
+from discord.ext import commands
+
 intents=discord.Intents.all()
 intents.members = True
-# Создаем бота в переменной client и передаем все привелегии
-client = discord.Client(intents=intents)
 
-@client.event
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    print(f'We have logged in as {bot.user}')
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
     if message.content.startswith('привет'):
         await message.channel.send("привет!")
@@ -44,12 +45,4 @@ async def on_message(message):
         await message.channel.send('на некоторые сообщения этот бот отвечает,а некоторые повторяет. есть пару компнд - смайлик , монетка , игра , пароль и команда !help.')
     else:
         await message.channel.send(message.content)
-
-
-@client.event
-async def on_member_join(member):
-    print(f'{member} has joined a server.')
-    await member.send(f"Hello {member}!")
-
-
-client.run(settings["TOKEN"])
+bot.run('MTExMDU1Nzk1ODk4ODg5ODM0NA.Gum7DP.UgoatLXkHOkMYnZwzlaGCqAua1JqADW8_t2shU')
